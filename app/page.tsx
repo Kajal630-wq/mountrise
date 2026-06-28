@@ -66,7 +66,8 @@ export default function Home() {
     : featuredProperties.filter((p: any) =>
         (p.type || p.property_type || '').toLowerCase() === activeTab.toLowerCase()
       );
-
+const AGENT_PHONE = '918376844955';
+const AGENT_WHATSAPP = '918376844955';
   return (
     <main>
       <Navbar />
@@ -204,12 +205,28 @@ export default function Home() {
                           Explore
                         </button>
                       </Link>
-                      <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                      {/* <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
                         <FaPhone className="text-amber-600" />
-                      </button>
-                      <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                        <FaWhatsapp className="text-green-500" />
-                      </button>
+
+                      </button> */}
+                      <a href={`tel:+${AGENT_PHONE}`}
+                        className="p-2 border border-gray-300 rounded-lg hover:bg-amber-50 hover:border-amber-400 transition"
+                        title="Call Agent"
+                      >
+                        <FaPhone className="text-amber-600" />
+                      </a>
+                
+
+                    <a href={`https://wa.me/${AGENT_WHATSAPP}?text=${encodeURIComponent(
+              `Hello! I'm interested in this property:\n🏠 ${property.title}\n📍 ${property.location}\n💰 ₹${property.price}\n\nPlease share more details.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 border border-gray-300 rounded-lg hover:bg-green-50 hover:border-green-400 transition"
+            title="WhatsApp Agent"
+          >
+            <FaWhatsapp className="text-green-500" />
+          </a>
                     </div>
                   </div>
                 </div>
