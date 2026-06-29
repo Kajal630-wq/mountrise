@@ -33,10 +33,10 @@ export default function ContactPage() {
               <p className="text-gray-600 mb-8">Whether you're ready to buy, sell, or just have questions, our team is here to help.</p>
               
               <div className="space-y-6">
-                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Phone className="text-amber-600" /></div><div><p className="font-semibold">Phone</p><p className="text-gray-600">+1 (888) 567-8901</p></div></div>
-                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Mail className="text-amber-600" /></div><div><p className="font-semibold">Email</p><p className="text-gray-600">hello@estatehub.com</p></div></div>
-                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><MapPin className="text-amber-600" /></div><div><p className="font-semibold">Office</p><p className="text-gray-600">123 Luxury Avenue, Beverly Hills, CA 90210</p></div></div>
-                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Clock className="text-amber-600" /></div><div><p className="font-semibold">Business Hours</p><p className="text-gray-600">Mon-Fri: 9AM - 8PM | Sat-Sun: 10AM - 6PM</p></div></div>
+                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Phone className="text-amber-600" /></div><div><p className="font-semibold">Phone</p><p className="text-gray-600">8376844955</p></div></div>
+                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Mail className="text-amber-600" /></div><div><p className="font-semibold">Email</p><p className="text-gray-600">vivek.kushwaha802@gmail.com</p></div></div>
+                <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><MapPin className="text-amber-600" /></div><div><p className="font-semibold">Office</p><p className="text-gray-600">F8-GF03, Ground Floor, Centurian Park, Sector Techzone 4</p></div></div>
+                {/* <div className="flex items-center gap-4"><div className="bg-amber-100 p-3 rounded-full"><Clock className="text-amber-600" /></div><div><p className="font-semibold">Business Hours</p><p className="text-gray-600">Mon-Fri: 9AM - 8PM | Sat-Sun: 10AM - 6PM</p></div></div> */}
               </div>
 
               <div className="mt-8 p-6 bg-gray-50 rounded-2xl">
@@ -69,8 +69,15 @@ export default function ContactPage() {
       <section className="px-5 lg:px-8 pb-20">
         <div className="container mx-auto">
           <div className="bg-gray-200 rounded-2xl overflow-hidden h-96">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.876140299712!2d-118.40348268478344!3d34.05818098060992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04d6d147ab%3A0xd6c7c379fd081ed1!2sBeverly%20Hills%2C%20CA%2090210!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"></iframe>
-          </div>
+<iframe
+  src="https://www.google.com/maps?q=F8-GF03,+Ground+Floor,+Centurian+Park,+Sector+Techzone+4,+Greater+Noida,+Uttar+Pradesh&output=embed"
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  allowFullScreen
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+></iframe>          </div>
         </div>
       </section>
 

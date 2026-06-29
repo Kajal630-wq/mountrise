@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Building2, Menu, X, LogIn } from 'lucide-react'
 
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const pathname = usePathname()
@@ -20,7 +21,7 @@ const Navbar: React.FC = () => {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-5 lg:px-8 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-        <img src='logo/mountrise.png' height='50px'/>
+        <img src="../logo/mountrise.png" height='50px'/>
           {/* <Building2 className="text-3xl text-amber-600" size={32} /> */}
           <span className="font-serif-alt text-2xl font-bold tracking-tight text-gray-800">
             Mount<span className="text-amber-600">Rise</span>

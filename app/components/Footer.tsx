@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <Link href="/" className="flex items-center gap-2 mb-3">
-                  <img src='logo/mountrise.png' height='50px'/>
-            <span className="font-serif-alt text-2xl font-bold text-white">MaountRise</span>
+                  <img src='../logo/mountrise.png' height='50px'/>
+            <span className="font-serif-alt text-2xl font-bold text-white">MountRise</span>
           </Link>
           <p className="text-sm">Redefining real estate with transparency, innovation, and excellence.</p>
         </div>

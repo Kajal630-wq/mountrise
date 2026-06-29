@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
@@ -14,14 +14,21 @@ import { propertyAPI } from '@/lib/api';
 
 export default function PropertyDetailsPage() {
   const params = useParams();
-  const id = Number(params.id);
+const id = useMemo(() => {
+  const raw = params?.id;
+  const num = Number(raw);
+  return isNaN(num) ? null : num;
+}, [params?.id]);
 
-  const { data: propertyData, isLoading, error, refetch } = useQuery({
-    queryKey: ['property', id],
-    queryFn: () => propertyAPI.getById(id),
-    enabled: !!id && !isNaN(id),
-    retry: 1,
-  });
+
+const { data: propertyData, isLoading, error, refetch } = useQuery({
+  queryKey: ['property', id],
+  queryFn: () => propertyAPI.getById(id!),
+  enabled: id !== null,  // ✅ simple boolean
+  retry: 1,
+  staleTime: 5 * 60 * 1000,  // ✅ 5 min cache - unnecessary refetch rokta hai
+});
+
 
   // ✅ Safe data extraction with fallback values
   const property = propertyData?.data?.data || null;
@@ -112,6 +119,11 @@ export default function PropertyDetailsPage() {
   const agentImage = agent?.image || 'https://via.placeholder.com/64x64?text=Agent';
   const agentRole = agent?.role || 'Real Estate Agent';
 
+  const FALLBACK_AGENT = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f59e0b' rx='32'/%3E%3Ctext x='32' y='38' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3E👤%3C/text%3E%3C/svg%3E`;
+
+const FALLBACK_PROPERTY = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='500' viewBox='0 0 1200 500'%3E%3Crect width='1200' height='500' fill='%23e5e7eb'/%3E%3Ctext x='600' y='260' text-anchor='middle' fill='%239ca3af' font-size='32' font-family='Arial'%3EProperty Image%3C/text%3E%3C/svg%3E`;
+
+
   return (
     <main>
       <Navbar />
@@ -134,8 +146,10 @@ export default function PropertyDetailsPage() {
               alt={property.title || 'Property'} 
               className="w-full h-[400px] md:h-[500px] object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://via.placeholder.com/1200x500?text=Property+Image';
-              }}
+              const t = e.target as HTMLImageElement;
+              t.onerror = null; // ✅ key line
+              t.src = FALLBACK_PROPERTY;
+            }}
             />
             {property.is_featured && (
               <div className="absolute top-4 left-4 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1">
@@ -160,7 +174,7 @@ export default function PropertyDetailsPage() {
                 {property.location || 'Location not specified'}
               </p>
               <p className="text-3xl font-bold text-amber-600 mt-4">
-                {formatPrice(property.price)}
+                {property.price} Rs
               </p>
 
               {/* Property Stats - ✅ Safe with fallbacks */}
@@ -234,12 +248,15 @@ export default function PropertyDetailsPage() {
                 </h3>
                 
                 <div className="flex items-center gap-4 mb-4">
+            
                   <img 
                     src={agentImage} 
                     alt={agentName} 
                     className="w-16 h-16 rounded-full object-cover border-2 border-amber-200"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://via.placeholder.com/64x64?text=Agent';
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null; // ✅ infinite loop band karo
+                      target.src = 'data:image/svg+xml,...'; // ya koi local fallback
                     }}
                   />
                   <div>
